@@ -1,19 +1,20 @@
-NAME		= push_swap
-CFLAGS		= -Wall -Werror -Wextra
+NAME = push_swap
 LIBFT = ./libft
 LIBFTA = ./libft/libft.a
-SRC			=  src/utils.c src/rules1.c src/rules2.c src/rules3.c src/sort_list.c src/sort_list2.c src/check.c src/create_stacks.c src/helpers.c src/pushswap.c
-OBJ			= $(SRC:.c=.o)
+CC = gcc -g
+CFLAGS = -Wall -Wextra -Werror
+CFILES = utils.c sort_func.c basic_sorts.c sorter.c rules1.c rules2.c rules3.c quick_sort.c free.c push_swap.c
+OBJS = $(CFILES:.c=.o)
 
-all:  $(NAME)
-
-$(NAME): $(OBJ)
+$(NAME): $(OBJS)
 	make -C $(LIBFT)
-	cc $(SRC) $(C_FLAGS) $(LIBFTA) -o $(NAME)
+	cc $(CFLAGS) $(OBJS) $(LIBFTA) -o $(NAME)
+
+all: $(NAME)
 
 clean:
 	make clean -C $(LIBFT)
-	rm -rf $(OBJ)
+	rm -rf $(OBJS)
 
 fclean: clean
 	make fclean -C $(LIBFT)
